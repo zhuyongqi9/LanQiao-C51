@@ -1,5 +1,5 @@
 # 蓝桥杯C51单片机组
- practise code for LanQiao champion
+ 蓝桥杯51单片机组的基础内容
 
 ## 内容介绍
 
