@@ -1,4 +1,4 @@
-# LanQiao-C51
+# 蓝桥杯C51单片机组
  practise code for LanQiao champion
 
 ## 内容介绍
