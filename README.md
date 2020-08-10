@@ -7,4 +7,4 @@
 
  ## 国信长天开发平台实物图
 
-![](\images\国信长天单片机平台.jpg)
+![](https://github.com/codeYongqi/LanQiao-C51/blob/master/images/%E5%9B%BD%E4%BF%A1%E9%95%BF%E5%A4%A9%E5%8D%95%E7%89%87%E6%9C%BA%E5%B9%B3%E5%8F%B0.jpg)
