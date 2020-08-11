@@ -1,0 +1,238 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/11/2020  19:10:27  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\keyboard.obj TO .\Objects\æÿ’Ûº¸≈Ã PRINT (.\Listings\æÿ’Ûº¸≈Ã.
+>> m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\keyboard.obj (KEYBOARD)
+  D:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\æÿ’Ûº¸≈Ã (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            DATA    000CH     0002H     UNIT         ?DT?KEYBOARD
+            IDATA   000EH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     00A7H     UNIT         ?PR?SCAN?KEYBOARD
+            CODE    00AAH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0136H     0033H     UNIT         ?PR?_HC138?KEYBOARD
+            CODE    0169H     0023H     UNIT         ?PR?_SHOW_SMG?KEYBOARD
+            CODE    018CH     0016H     UNIT         ?PR?_DELAYMS?KEYBOARD
+            CODE    01A2H     0016H     UNIT         ?PR?MAIN?KEYBOARD
+            CODE    01B8H     0012H     UNIT         ?CO?KEYBOARD
+            CODE    01CAH     0009H     UNIT         ?PR?INIT?KEYBOARD
+            CODE    01D3H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\æÿ’Ûº¸≈Ã (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?KEYBOARD
+  +--> ?C_INITSEG
+
+?PR?MAIN?KEYBOARD              -----    -----
+  +--> ?PR?INIT?KEYBOARD
+  +--> ?PR?SCAN?KEYBOARD
+  +--> ?PR?_DELAYMS?KEYBOARD
+  +--> ?PR?_SHOW_SMG?KEYBOARD
+
+?PR?INIT?KEYBOARD              -----    -----
+  +--> ?PR?_HC138?KEYBOARD
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/11/2020  19:10:27  PAGE 2
+
+
+
+?PR?SCAN?KEYBOARD              0008H    0004H
+  +--> ?PR?_DELAYMS?KEYBOARD
+
+?PR?_SHOW_SMG?KEYBOARD         -----    -----
+  +--> ?PR?_HC138?KEYBOARD
+  +--> ?CO?KEYBOARD
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\æÿ’Ûº¸≈Ã (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00AAH         SEGMENT       ?C_C51STARTUP
+  I:000EH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00ADH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00AAH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00AAH         LINE#         133
+  C:00ACH         LINE#         134
+  C:00ADH         LINE#         135
+  C:00AEH         LINE#         136
+  C:00B0H         LINE#         185
+  C:00B3H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        KEYBOARD
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  D:00C8H         PUBLIC        P5
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/11/2020  19:10:27  PAGE 3
+
+
+  D:00E8H         PUBLIC        P6
+  D:00F8H         PUBLIC        P7
+  D:00A8H         PUBLIC        IE
+  C:01CAH         PUBLIC        Init
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  C:01A2H         PUBLIC        main
+  C:0003H         PUBLIC        scan
+  C:0136H         PUBLIC        _HC138
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  B:00C0H.2       PUBLIC        P42
+  B:00B0H.4       PUBLIC        P34
+  B:00C0H.4       PUBLIC        P44
+  B:00B0H.5       PUBLIC        P35
+  D:000CH         PUBLIC        num
+  C:01B8H         PUBLIC        SMG
+  C:0169H         PUBLIC        _Show_SMG
+  C:018CH         PUBLIC        _delayms
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _HC138
+  D:0007H         SYMBOL        n
+  C:0136H         LINE#         8
+  C:0136H         LINE#         9
+  C:0145H         LINE#         10
+  C:0145H         LINE#         11
+  C:014DH         LINE#         12
+  C:014EH         LINE#         13
+  C:014EH         LINE#         14
+  C:0156H         LINE#         15
+  C:0157H         LINE#         16
+  C:0157H         LINE#         17
+  C:015FH         LINE#         18
+  C:0160H         LINE#         19
+  C:0160H         LINE#         20
+  C:0168H         LINE#         21
+  C:0168H         LINE#         22
+  C:0168H         LINE#         23
+  -------         ENDPROC       _HC138
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        n
+  -------         DO            
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:018CH         LINE#         25
+  C:018CH         LINE#         27
+  C:01A1H         LINE#         28
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          INIT
+  C:01CAH         LINE#         30
+  C:01CAH         LINE#         31
+  C:01CFH         LINE#         32
+  C:01D2H         LINE#         33
+  -------         ENDPROC       INIT
+  -------         PROC          _SHOW_SMG
+  D:0006H         SYMBOL        pos
+  D:0005H         SYMBOL        value
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/11/2020  19:10:27  PAGE 4
+
+
+  C:0169H         LINE#         35
+  C:016BH         LINE#         36
+  C:0170H         LINE#         37
+  C:017FH         LINE#         38
+  C:0184H         LINE#         39
+  C:018BH         LINE#         40
+  -------         ENDPROC       _SHOW_SMG
+  -------         PROC          SCAN
+  -------         DO            
+  D:0082H         SYMBOL        col
+  D:0008H         SYMBOL        row
+  D:000AH         SYMBOL        kp
+  -------         ENDDO         
+  C:0003H         LINE#         42
+  C:0003H         LINE#         44
+  C:0008H         LINE#         45
+  C:000BH         LINE#         46
+  C:000DH         LINE#         47
+  C:000FH         LINE#         48
+  C:0012H         LINE#         49
+  C:001EH         LINE#         50
+  C:0024H         LINE#         51
+  C:0030H         LINE#         52
+  C:0035H         LINE#         53
+  C:0042H         LINE#         54
+  C:0050H         LINE#         55
+  C:005EH         LINE#         56
+  C:006CH         LINE#         57
+  C:006CH         LINE#         59
+  C:006FH         LINE#         60
+  C:0071H         LINE#         61
+  C:0073H         LINE#         62
+  C:0079H         LINE#         63
+  C:007FH         LINE#         64
+  C:0085H         LINE#         65
+  C:008BH         LINE#         66
+  C:008BH         LINE#         68
+  C:0093H         LINE#         69
+  C:00A9H         LINE#         70
+  C:00A9H         LINE#         71
+  -------         ENDPROC       SCAN
+  -------         PROC          MAIN
+  C:01A2H         LINE#         73
+  C:01A2H         LINE#         74
+  C:01A5H         LINE#         76
+  C:01A5H         LINE#         77
+  C:01A8H         LINE#         78
+  C:01AFH         LINE#         79
+  C:01B6H         LINE#         80
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        KEYBOARD
+
+Program Size: data=15.0 xdata=0 code=472
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

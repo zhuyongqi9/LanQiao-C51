@@ -1,0 +1,213 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/11/2020  16:17:01  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\dynamic_display.obj TO .\Objects\数码管动态显示 PRINT (.\Listi
+>> ngs\数码管动态显示.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\dynamic_display.obj (DYNAMIC_DISPLAY)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\数码管动态显示 (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0009H     UNIT         _DATA_GROUP_
+            IDATA   0011H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0059H     UNIT         ?PR?DYNAMIC_SHOW?DYNAMIC_DISPLAY
+            CODE    005CH     0033H     UNIT         ?PR?_HC138?DYNAMIC_DISPLAY
+            CODE    008FH     0024H     UNIT         ?PR?_SHOW_SMG?DYNAMIC_DISPLAY
+            CODE    00B3H     001AH     UNIT         ?CO?DYNAMIC_DISPLAY
+            CODE    00CDH     0019H     UNIT         ?C?LIB_CODE
+            CODE    00E6H     0016H     UNIT         ?PR?_DELAYMS?DYNAMIC_DISPLAY
+            CODE    00FCH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0108H     0009H     UNIT         ?PR?INIT?DYNAMIC_DISPLAY
+            CODE    0111H     0008H     UNIT         ?PR?MAIN?DYNAMIC_DISPLAY
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\数码管动态显示 (?C_STARTUP)
+
+
+SEGMENT                                    DATA_GROUP 
+  +--> CALLED SEGMENT                    START    LENGTH
+--------------------------------------------------------
+?C_C51STARTUP                            -----    -----
+  +--> ?PR?MAIN?DYNAMIC_DISPLAY
+
+?PR?MAIN?DYNAMIC_DISPLAY                 -----    -----
+  +--> ?PR?INIT?DYNAMIC_DISPLAY
+  +--> ?PR?DYNAMIC_SHOW?DYNAMIC_DISPLAY
+
+?PR?INIT?DYNAMIC_DISPLAY                 -----    -----
+  +--> ?PR?_HC138?DYNAMIC_DISPLAY
+
+?PR?DYNAMIC_SHOW?DYNAMIC_DISPLAY         0008H    0009H
+  +--> ?CO?DYNAMIC_DISPLAY
+  +--> ?PR?_SHOW_SMG?DYNAMIC_DISPLAY
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/11/2020  16:17:01  PAGE 2
+
+
+  +--> ?PR?_DELAYMS?DYNAMIC_DISPLAY
+
+?PR?_SHOW_SMG?DYNAMIC_DISPLAY            -----    -----
+  +--> ?PR?_HC138?DYNAMIC_DISPLAY
+  +--> ?CO?DYNAMIC_DISPLAY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\数码管动态显示 (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:00FCH         SEGMENT       ?C_C51STARTUP
+  I:0011H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:00FFH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:00FCH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:00FCH         LINE#         133
+  C:00FEH         LINE#         134
+  C:00FFH         LINE#         135
+  C:0100H         LINE#         136
+  C:0102H         LINE#         185
+  C:0105H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        DYNAMIC_DISPLAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0003H         PUBLIC        dynamic_show
+  D:00A8H         PUBLIC        IE
+  C:0108H         PUBLIC        Init
+  D:00B8H         PUBLIC        IP
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/11/2020  16:17:01  PAGE 3
+
+
+  C:00C5H         PUBLIC        value
+  C:0111H         PUBLIC        main
+  C:005CH         PUBLIC        _HC138
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:00B3H         PUBLIC        SMG
+  D:00C8H         PUBLIC        T2CON
+  C:008FH         PUBLIC        _Show_SMG
+  C:00E6H         PUBLIC        _delayms
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _HC138
+  D:0007H         SYMBOL        n
+  C:005CH         LINE#         6
+  C:005CH         LINE#         7
+  C:006BH         LINE#         8
+  C:006BH         LINE#         9
+  C:0073H         LINE#         10
+  C:0074H         LINE#         11
+  C:0074H         LINE#         12
+  C:007CH         LINE#         13
+  C:007DH         LINE#         14
+  C:007DH         LINE#         15
+  C:0085H         LINE#         16
+  C:0086H         LINE#         17
+  C:0086H         LINE#         18
+  C:008EH         LINE#         19
+  C:008EH         LINE#         20
+  C:008EH         LINE#         21
+  -------         ENDPROC       _HC138
+  -------         PROC          _DELAYMS
+  D:0006H         SYMBOL        n
+  -------         DO            
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:00E6H         LINE#         23
+  C:00E6H         LINE#         25
+  C:00FBH         LINE#         26
+  -------         ENDPROC       _DELAYMS
+  -------         PROC          INIT
+  C:0108H         LINE#         28
+  C:0108H         LINE#         29
+  C:010DH         LINE#         30
+  C:0110H         LINE#         31
+  -------         ENDPROC       INIT
+  -------         PROC          _SHOW_SMG
+  D:0006H         SYMBOL        pos
+  D:0005H         SYMBOL        value
+  C:008FH         LINE#         33
+  C:0091H         LINE#         34
+  C:0096H         LINE#         35
+  C:00A6H         LINE#         36
+  C:00ABH         LINE#         37
+  C:00B2H         LINE#         38
+  -------         ENDPROC       _SHOW_SMG
+  -------         PROC          DYNAMIC_SHOW
+  -------         DO            
+  D:0008H         SYMBOL        length
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/11/2020  16:17:01  PAGE 4
+
+
+  D:000AH         SYMBOL        p
+  D:000DH         SYMBOL        i
+  D:000FH         SYMBOL        j
+  -------         ENDDO         
+  C:0003H         LINE#         41
+  C:0003H         LINE#         42
+  C:0009H         LINE#         43
+  C:0012H         LINE#         44
+  C:0017H         LINE#         45
+  C:002CH         LINE#         46
+  C:004AH         LINE#         47
+  C:0051H         LINE#         48
+  C:005BH         LINE#         49
+  -------         ENDPROC       DYNAMIC_SHOW
+  -------         PROC          MAIN
+  C:0111H         LINE#         51
+  C:0111H         LINE#         52
+  C:0114H         LINE#         53
+  C:0114H         LINE#         54
+  C:0117H         LINE#         55
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        DYNAMIC_DISPLAY
+
+  -------         MODULE        ?C?CLDPTR
+  C:00CDH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+Program Size: data=18.0 xdata=0 code=281
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
