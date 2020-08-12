@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\test.obj" 
+TO ".\Objects\串口进阶" 
+PRINT(".\Listings\串口进阶.m51") RAMSIZE(256) 

@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\timer.obj" 
+TO ".\Objects\定时中断" 
+PRINT(".\Listings\定时中断.m51") RAMSIZE(256) 
