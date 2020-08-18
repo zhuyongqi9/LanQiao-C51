@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\test.obj",
+".\Objects\iic.obj" 
+TO ".\Objects\智能照明传感器" 
+PRINT(".\Listings\智能照明传感器.m51") RAMSIZE(256) 

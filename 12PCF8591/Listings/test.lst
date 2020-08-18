@@ -1,0 +1,160 @@
+C51 COMPILER V9.54   TEST                                                                  08/15/2020 15:30:10 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE TEST
+OBJECT MODULE PLACED IN .\Objects\test.obj
+COMPILER INVOKED BY: D:\keil\C51\BIN\C51.EXE test.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\test.ls
+                    -t) TABS(2) OBJECT(.\Objects\test.obj)
+
+line level    source
+
+   1          #include "reg52.h"
+   2          #include "absacc.h"
+   3          #include "intrins.h"
+   4          #include "iic.h"
+   5           
+   6          sbit S4 = P3^3;
+   7           
+   8          unsigned char dat_rd1;
+   9          unsigned char dat_rb2;
+  10          unsigned char stat = 0;
+  11           
+  12          unsigned char code SMG_duanma[18]=
+  13              {0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,
+  14               0x88,0x80,0xc6,0xc0,0x86,0x8e,0xbf,0x7f};
+  15           
+  16          void DelaySMG(unsigned int t)
+  17          {
+  18   1        while(t--);
+  19   1      }
+  20           
+  21          void DisplaySMG_Bit(unsigned char pos, unsigned char value)
+  22          {
+  23   1        XBYTE[0xE000] = 0xFF;
+  24   1        XBYTE[0xC000] = 0x01 << pos;
+  25   1        XBYTE[0xE000] = value;
+  26   1      }
+  27           
+  28          void DisplaySMG_ADC(unsigned char channel, unsigned char dat)
+  29          {
+  30   1        DisplaySMG_Bit(0, SMG_duanma[16]);
+  31   1        DelaySMG(100);
+  32   1        DisplaySMG_Bit(1, SMG_duanma[channel]);
+  33   1        DelaySMG(100);
+  34   1        DisplaySMG_Bit(2, SMG_duanma[16]);
+  35   1        DelaySMG(100);
+  36   1            
+  37   1        DisplaySMG_Bit(3, 0xFF);
+  38   1        DisplaySMG_Bit(4, 0xFF);
+  39   1        
+  40   1        DisplaySMG_Bit(5, SMG_duanma[dat / 100]);
+  41   1        DelaySMG(100);
+  42   1        DisplaySMG_Bit(6, SMG_duanma[(dat % 100) / 10]);
+  43   1        DelaySMG(100);
+  44   1        DisplaySMG_Bit(7, SMG_duanma[dat % 10]);
+  45   1        DelaySMG(100);
+  46   1      }
+  47           
+  48          void Read_RD1()
+  49          {
+  50   1        IIC_Start();                  
+  51   1        IIC_SendByte(0x90);         
+  52   1        IIC_WaitAck();                
+  53   1        IIC_SendByte(0x01);         
+  54   1        IIC_WaitAck();                
+C51 COMPILER V9.54   TEST                                                                  08/15/2020 15:30:10 PAGE 2   
+
+  55   1        IIC_Stop();                 
+  56   1        
+  57   1        DisplaySMG_ADC(1,dat_rd1);
+  58   1        
+  59   1        IIC_Start();                  
+  60   1        IIC_SendByte(0x91);           
+  61   1        IIC_WaitAck();                
+  62   1        dat_rd1 = IIC_RecByte();      
+  63   1                        
+  64   1        IIC_Stop();                   
+  65   1        DisplaySMG_ADC(1,dat_rd1);
+  66   1      }
+  67           
+  68          void Read_RB2()
+  69          {
+  70   1        IIC_Start();                
+  71   1        IIC_SendByte(0x90);           
+  72   1        IIC_WaitAck();                
+  73   1        IIC_SendByte(0x03);         
+  74   1        IIC_WaitAck();              
+  75   1        IIC_Stop();                   
+  76   1        
+  77   1        DisplaySMG_ADC(3,dat_rb2);
+  78   1        
+  79   1        IIC_Start();                
+  80   1        IIC_SendByte(0x91);         
+  81   1        IIC_WaitAck();              
+  82   1        dat_rb2 = IIC_RecByte();    
+  83   1        
+  84   1                    
+  85   1        IIC_Stop();                   
+  86   1        DisplaySMG_ADC(3,dat_rb2);
+  87   1      }
+  88           
+  89          void Scan_Keys()
+  90          {
+  91   1        if(S4 == 0)
+  92   1        {
+  93   2          DelaySMG(100);
+  94   2          if(S4 == 0)
+  95   2          {
+  96   3            if(stat == 0)
+  97   3            {
+  98   4              stat = 1;
+  99   4              while(S4 == 0)
+ 100   4              {
+ 101   5                DisplaySMG_ADC(1,dat_rd1);
+ 102   5              }
+ 103   4            }
+ 104   3            else if(stat == 1)
+ 105   3            {
+ 106   4              stat = 0;
+ 107   4              while(S4 == 0)
+ 108   4              {
+ 109   5                DisplaySMG_ADC(3,dat_rb2);
+ 110   5              }
+ 111   4            }
+ 112   3          }
+ 113   2        }
+ 114   1      }
+ 115           
+ 116          main()
+C51 COMPILER V9.54   TEST                                                                  08/15/2020 15:30:10 PAGE 3   
+
+ 117          {
+ 118   1        XBYTE[0x8000] = 0xff;
+ 119   1        XBYTE[0xa000] = 0x00;
+ 120   1        while(1)
+ 121   1        {
+ 122   2          Scan_Keys();
+ 123   2          if(stat == 0)
+ 124   2          {
+ 125   3            Read_RD1();
+ 126   3          }
+ 127   2          else if(stat == 1)
+ 128   2          {
+ 129   3            Read_RB2();
+ 130   3          }
+ 131   2        }
+ 132   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    339    ----
+   CONSTANT SIZE    =     18    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
